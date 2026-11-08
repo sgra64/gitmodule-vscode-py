@@ -2,48 +2,35 @@
 // VSCode project settings file.
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 {
-    // Python code-runner settings
+    // Python Code-Runner settings
     "code-runner.defaultLanguage": "python",
     "code-runner.showExecutionMessage": false,
     "code-runner.clearPreviousOutput": true,
     "code-runner.executorMap": {
         // "python": "\"$pythonPath\" $fullFileName",
-        "python": "python ./main.py",
+        "python": "set PYTHONIOENCODING=utf-8 && python -m main",
     },
-    "makefile.configureOnOpen": false,
 
-    // Python test-runner settings, requires module 'pytest'
+    // Python Test-Runner settings, requires module 'pytest'
     // - verify: python -m pytest --version --> 8.4.2
     // - install module 'pytest': pip install pytest
     // 
-    "python.testing.unittestEnabled": false,    // or error: Test provider types are not aligned
-    "python.testing.pytestEnabled": true,
     "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
     "python.testing.unittestArgs": [
-        "-v", "-s", "${workspaceFolder}/tests", "-p", "test_*.py"
+        // "-v", "-s", "${workspaceFolder}/tests", "-p", "test_*.py"
+        "-v", "-s", ".", "-p", "test_*.py"
     ],
 
-    // Editor settings
-    "editor.detectIndentation": false,
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,            // insert spaces for tabs
-    "editor.renderWhitespace": "all",       // show white spaces in editor as small dot
-    "editor.hover.enabled": true,           // show context when hovering
-    "editor.hover.delay": 1500,             // delay hover-time for context pop-ups (in ms)
-    "editor.minimap.enabled": false,        // show minimap for long files
-    "editor.inlayHints.enabled": "off",     // don't show argument names in method calls
-        "files.exclude": {
+    // Exclude files from being displayed in explorer panel
+    "files.exclude": {
         "**/__pycache__": true,
         "**/.pytest_cache": true,
         "**/*.pyc": true
     },
 
-    // File settings
-    "explorer.confirmDelete": false,        // ask to comfirm file delete
-    "files.autoSave": "afterDelay",         // 'afterDelay' (1sec), 'onFocusChange', 'onWindowChange'
-    "files.autoSaveDelay": 800,
-    "files.eol": "\n",                      // use '\n' as default line ending (not: CR/LF)
-
+    // Start terminal in '${workspaceFolder}', not in user's HOME.
     // Terminal settings, see https://code.visualstudio.com/docs/terminal/profiles
     "terminal.integrated.defaultProfile.windows": "Bash",
     "terminal.integrated.profiles.windows": {
@@ -52,34 +39,10 @@
           "args": ["--init-file", "'${workspaceFolder}'/.vscode/launch-terminal.sh"],
         //   "args": ["--init-file", "~/.profile"],
           "icon": "terminal-bash",
-        },
-        "Git Bash": null,                   // remove other terminals from the menu
-        "PowerShell": null,
-        "Command Prompt": null,
-        "JavaScript Debug Terminal": null,
-        "Ubuntu (WSL)": null,
+        }
     },
     "terminal.integrated.hideOnStartup": "always"   // prevent terminal show-up on startup
+
+
+    // "makefile.configureOnOpen": false,
 }
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// VSCode global settings file and project caches:
-//  - Windows: '%APPDATA%/Code/User' | 'C:/Users/<user>/AppData/Roaming/Code/User'
-//  - MacOS:   '~/Library/Application\ Support/Code/User'
-//  - Linux:   '$HOME/.config/Code/User/settings.json'
-//        +
-//        +-- settings.json         ; VSCode global settings file
-//        +-- workspaceStorage      ; VSCode project caches
-// 
-// VSCode installation paths:
-//  - Windows: '%APPDATA%/Local/Programs/Microsoft\ VS\ Code/bin'
-//  - MacOS:   '/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin'
-// 
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// VSCode commands:
-//  - build: Ctrl-Shift-B
-//  - run:   Ctrl-Alt-N
-//  - clean Java Language Server Workspace: Ctrl-Shift-P
-//  - block comment: mark text and Ctrl-'#'
-//  - multi-cursor edits: Ctrl-Alt-<ArrowUp,Down> or Alt+<Click>
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// 
